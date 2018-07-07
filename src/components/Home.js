@@ -4,16 +4,31 @@ import { fetchData } from "../store";
 
 class Home extends React.Component {
     componentDidMount( ) {
-        if ( this.props.circuits.length <= 0 ) {
-            this.props.fetchData( );
-        }
+        this.props.fetchData( );
+    }
+
+    shouldComponentUpdate() {
+        let firstRender = window.firstRender
+        window.firstRender = false
+        return !firstRender
     }
 
     render( ) {
+        if (typeof document === 'object' && window.firstRender) {
+            console.log('prevent re-render')
+            let node = document.getElementById('home')
+            let html = node && node.innerHTML
+            if (html) {
+                return <div id="home" dangerouslySetInnerHTML={{ __html: html }}/>
+            }
+        }
+
+        console.log('render')
+
         const { circuits } = this.props;
 
         return (
-            <div>
+            <div id="home">
                 <h2>F1 2018 Season Calendar</h2>
                 <ul>
                     { circuits.map( ( { circuitId, circuitName, Location } ) => (

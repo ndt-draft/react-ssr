@@ -60,7 +60,7 @@ function htmlTemplate( reactDom, reduxState, helmetData ) {
         <body>
             <div id="app">${ reactDom }</div>
             <script>
-                window.REDUX_DATA = ${ JSON.stringify( reduxState ) }
+                window.firstRender = true
             </script>
             <script src="./app.bundle.js"></script>
         </body>
