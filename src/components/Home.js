@@ -7,12 +7,6 @@ class Home extends React.Component {
         this.props.fetchData( );
     }
 
-    shouldComponentUpdate() {
-        let firstRender = window.firstRender
-        window.firstRender = false
-        return !firstRender
-    }
-
     render( ) {
         if (typeof document === 'object' && window.firstRender) {
             console.log('prevent re-render')

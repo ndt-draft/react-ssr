@@ -11,6 +11,13 @@ class Layout extends React.Component {
         };
     }
 
+    componentDidMount() {
+        console.log('layout mounted')
+        if (typeof document === 'object' && window.firstRender) {
+            window.firstRender = false
+        }
+    }
+
     render() {
         return (
             <div>
